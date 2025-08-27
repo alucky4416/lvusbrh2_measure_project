@@ -1,11 +1,69 @@
-# USBRH2 simulator for tinygo and xiao-rp2040
+# USBRH2 simulator for xiao-rp2040 
 
 ## About
-usbrh2 simulator
+This firmware is USBRH2 simulator for Seeed xiao-rp2040.  
+USBRH2 is Temperature and Relative humidity sensor (using Sensirion SHT-31).  
+This firmware is developed using TinyGo.  
 
-## How to build
+USBRH2  
+https://strawberry-linux.com/catalog/items?code=52031
 
+Seeed xiao-rp2040  
+https://wiki.seeedstudio.com/XIAO-RP2040/
+
+TinyGo  
+https://tinygo.org/
+
+## Feature
+This firmware supports the following commands.  
+
+* getrh:  
+When the USBRH2 temperature and humidity acquisition command (getrh) is received, it returns simulated temperature and relative humidity data. 
+* serial, ver:  
+For the serial number acquisition command (serial) and version information acquisition command (ver), it responds with simulated serial numbers and version information, respectively. 
+* LED1, LED2:  
+  Turn on/off LED on xiao-rp2040 (LED1 is D0, LED2 is D1)
+* echo, auto, heater and other:  
+It does not respond to other commands such as echo, auto, or heater.  
+always echo off, heater off, auto off.  
+* status:  
+not supported, no response.
+
+### Restrict
+* delimiter is LF only. not support CR.
+
+## How to build, and bake
+
+### build 
 ```
 \> tinygo build -o usbrh2_sim_xiao-rp2040.uf2 -target xiao-rp2040 main.go
 ```
+### bake
+While pressing the BOOT switch on the rp2040, connect the rp2040 to a USB port.  
+then the RP2040 folder will then appear.  
 
+copy uf2 file to RP2040 USB mass storage  
+
+```
+\> copy usbrh2_sim_xiao-rp2040.uf2 <RP2040 USB mass storage>
+```
+
+another way  
+
+### flash (build and bake)
+Without pressing the BOOT switch. connect the rp2040 to a USB port.
+```
+\> tinygo flash -target xiao-rp2040 main.go
+```
+
+### Reconnect
+After flashing the firmware, reconnect the RP2040 and it will start working automatically. It should be recognized as a virtual COM port.
+
+* On Windows  
+COM1 or COM2, COM3, ...
+
+* On Linux  
+/dev/ttyACM0 or /dev/ttyACM1, /dev/ttyACM2,...
+
+## License
+This software is released under the MIT License
