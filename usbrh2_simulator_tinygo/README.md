@@ -1,7 +1,7 @@
-# USBRH2 simulator for xiao-rp2040 
+# USBRH2 simulator for xiao-rp2040 (or pico, rp2040 controller)
 
 ## About
-This firmware is USBRH2 simulator for Seeed xiao-rp2040.  
+This firmware is USBRH2 simulator for Seeed xiao-rp2040 or pico, RP2040 controller.  
 USBRH2 is Temperature and Relative humidity sensor (using Sensirion SHT-31).  
 This firmware is developed using TinyGo.  
 
@@ -18,15 +18,16 @@ https://tinygo.org/
 This firmware supports the following commands.  
 
 * getrh:  
-When the USBRH2 temperature and humidity acquisition command (getrh) is received, it returns simulated temperature and relative humidity data. 
+When the USBRH2 temperature and humidity acquisition command (getrh) is received, it returns simulated temperature and relative humidity data.  
+CRC is always 0xFF.  
 * serial, ver:  
 For the serial number acquisition command (serial) and version information acquisition command (ver), it responds with simulated serial numbers and version information, respectively. 
-* LED1, LED2:  
+* led1, led2:  
   Turn on/off LED on xiao-rp2040 (LED1 is D0, LED2 is D1)
 * echo, auto, heater and other:  
 It does not respond to other commands such as echo, auto, or heater.  
 always echo off, heater off, auto off.  
-* status:  
+* status, list, help:  
 not supported, no response.
 
 ### Restrict
@@ -64,6 +65,33 @@ COM1 or COM2, COM3, ...
 
 * On Linux  
 /dev/ttyACM0 or /dev/ttyACM1, /dev/ttyACM2,...
+
+
+## How to port to pico or RP2040 controllers
+main.go change the machine.<IOname> part below.  
+```
+	led_blue := machine.LED_BLUE
+	led1 := machine.D0
+	led2 := machine.D1
+```
+example pico:
+```
+	led_blue := machine.LED
+	led1 := machine.GP0
+	led2 := machine.GP1
+```
+
+To search for I/O names online, do the following:  
+```
+"tinygo <controller product name>"
+```
+
+change build option "-target"  
+example pico: 
+```
+\> tinygo flash -target pico main.go
+```
+
 
 ## License
 This software is released under the MIT License
