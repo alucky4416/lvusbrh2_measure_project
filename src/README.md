@@ -13,3 +13,5 @@ USBRH2 URL
 * LabVIEW 2020 or later 
 * NI-VISA (Serial Communication)
 
+## Licence
+This software is released under the MIT License.
