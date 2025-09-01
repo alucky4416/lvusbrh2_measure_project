@@ -24,6 +24,8 @@
 			</Item>
 			<Item Name="LVUSBRH2_Measurement_SUB_SelectComPort_Panel.vi" Type="VI" URL="../subvi/LVUSBRH2_Measurement_SUB_SelectComPort_Panel.vi"/>
 		</Item>
+		<Item Name="example_LVUSBRH2_1.vi" Type="VI" URL="../example_LVUSBRH2_1.vi"/>
+		<Item Name="example_LVUSBRH2_2.vi" Type="VI" URL="../example_LVUSBRH2_2.vi"/>
 		<Item Name="LVUSBRH2_Measurement_main.vi" Type="VI" URL="../LVUSBRH2_Measurement_main.vi"/>
 		<Item Name="依存項目" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
