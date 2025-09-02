@@ -3,7 +3,7 @@
 ## About
 This is data acquisition and display software for the USBRH2.
 The USBRH2 is a USB temperature and humidity sensor device made by Strawberry Linux.
-It was developed using LabVIEW 2020.
+This software was developed using LabVIEW 2020.
 
 USBRH2 URL 
  https://strawberry-linux.com/catalog/items?code=52031
