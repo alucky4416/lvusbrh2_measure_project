@@ -13,8 +13,11 @@ import (
 
 func main() {
 
-	ver_string := "usbrh2, ver 1.0.0"
-	serial_string := "123456789"
+	ver_string := "USBRH2 ver 1.0" + "\r\n" +
+		"Copyright(c) 2025 Strawberry Linux Co.,Ltd." + "\r\n"
+
+	serial_string := "serial:0xffff"
+
 	//	table := crc8.MakeTable(crc8.CRC8)
 
 	led_blue := machine.LED_BLUE
@@ -74,17 +77,21 @@ func main() {
 		case "led1":
 			if param_0 == "1" || param_0 == "on" || param_0 == "true" {
 				led1.Set(true)
+				fmt.Printf("LED1=ON\r\n") // LED1=(ON/OFF)
 			} else {
 				//			} else if param_0 == "0" || param_0 == "off" || param_0 == "false" {
 				led1.Set(false)
+				fmt.Printf("LED1=OFF\r\n") // LED1=(ON/OFF)
 			}
 			break
 		case "led2":
 			if param_0 == "1" || param_0 == "on" || param_0 == "true" {
 				led2.Set(true)
+				fmt.Printf("LED2=ON\r\n") // LED1=(ON/OFF)
 			} else {
 				//			} else if param_0 == "0" || param_0 == "off" || param_0 == "false" {
 				led2.Set(false)
+				fmt.Printf("LED2=OFF\r\n") // LED1=(ON/OFF)
 			}
 			break
 		case "heater":
@@ -101,11 +108,11 @@ func main() {
 			// table := crc8.MakeTable(crc8.CRC8)
 			crc := 0xFF
 			//			crc := crc8.Checksum([]byte(resp), table)
-			fmt.Printf("%s%02X\n", resp, crc) // :<Tmpr,humid,>crc8(HEX)
+			fmt.Printf("%s%02X\r\n", resp, crc) // :<Tmpr,humid,>crc8(HEX)
 		case "ver":
-			fmt.Printf("%s\n", ver_string)
+			fmt.Printf("%s\r\n", ver_string)
 		case "serial":
-			fmt.Printf("%s\n", serial_string)
+			fmt.Printf("%s\r\n", serial_string)
 		default:
 		}
 		led_blue.Set(sw)
